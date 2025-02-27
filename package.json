@@ -1,6 +1,6 @@
 {
   "name": "create-dc-app",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Create a NextJS app with Dan's custom configurations",
   "keywords": [],
   "license": "ISC",
