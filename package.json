@@ -1,0 +1,41 @@
+{
+  "name": "create-dc-app",
+  "version": "0.0.1",
+  "description": "Create a NextJS app with Dan's custom configurations",
+  "keywords": [],
+  "license": "ISC",
+  "author": "Dan Cargill",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "create-dc-app": "src/index.js"
+  },
+  "scripts": {
+    "build": "tsup && cp -r src/template dist/",
+    "dev": "tsup --watch",
+    "format": "prettier --write .",
+    "release": "release-it",
+    "typecheck": "tsc --noEmit"
+  },
+  "prettier": "@dc_/prettier-config",
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "commander": "^13.1.0",
+    "execa": "^9.5.2",
+    "fs-extra": "^11.3.0",
+    "inquirer": "^12.4.2"
+  },
+  "devDependencies": {
+    "@dc_/prettier-config": "^1.0.3",
+    "prettier": "^3.5.2",
+    "release-it": "^18.1.2"
+  },
+  "packageManager": "pnpm@10.5.1",
+  "readme": "README.md",
+  "release-it": {
+    "$schema": "https://unpkg.com/release-it/schema/release-it.json",
+    "github": {
+      "release": true
+    }
+  }
+}
