@@ -6,6 +6,7 @@ import fs from 'fs-extra'
 import { configurePackage } from '../utils/configure-package.js'
 import { createNextApp } from '../utils/create-next-app.js'
 import { installDependencies } from '../utils/dependencies.js'
+import { getPackageManager } from '../utils/get-package-manager.js'
 import { promptProjectName } from '../utils/prompts.js'
 import { copyTemplateFiles } from '../utils/template.js'
 
@@ -28,11 +29,12 @@ export async function createApp(projectName, options) {
     await configurePackage(projectPath)
     await copyTemplateFiles(projectPath)
 
-    console.log('Successfully created your app!')
+    const packageManager = getPackageManager()
+    console.log(`Successfully created your app with ${packageManager}`)
 
     console.log('\nNext steps:')
     console.log(chalk.cyan(`  cd ${projectName}`))
-    console.log(chalk.cyan('  pnpm dev'))
+    console.log(chalk.cyan(`  ${packageManager} dev`))
   } catch (error) {
     console.error(chalk.red('Error creating project:'), error)
     process.exit(1)

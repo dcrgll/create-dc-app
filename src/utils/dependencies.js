@@ -1,6 +1,8 @@
 import { execSync } from 'child_process'
 import chalk from 'chalk'
 
+import { getInstallCommand, getPackageManager } from './get-package-manager.js'
+
 export async function installDependencies() {
   const additionalDeps = [
     'lucide-react',
@@ -22,9 +24,15 @@ export async function installDependencies() {
     'prettier-plugin-packagejson'
   ]
 
+  const packageManager = getPackageManager()
+  const installCmd = getInstallCommand(packageManager)
+  const installDevCmd = getInstallCommand(packageManager, true)
+
   console.log(chalk.cyan('Installing dependencies...'))
-  execSync(`pnpm add ${additionalDeps.join(' ')}`, { stdio: 'ignore' })
+  execSync(`${installCmd} ${additionalDeps.join(' ')}`, { stdio: 'ignore' })
 
   console.log(chalk.cyan('Installing devDependencies...'))
-  execSync(`pnpm add -D ${additionalDevDeps.join(' ')}`, { stdio: 'ignore' })
+  execSync(`${installDevCmd} ${additionalDevDeps.join(' ')}`, {
+    stdio: 'ignore'
+  })
 }
