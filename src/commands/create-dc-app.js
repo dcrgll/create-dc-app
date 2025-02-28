@@ -34,7 +34,7 @@ export async function createApp(projectName, options) {
 
     const packageManager = getPackageManager()
 
-    const installCommand = getInstallCommand(packageManager)
+    const installCommand = getInstallCommand(packageManager, false, true)
 
     execSync(installCommand, { stdio: 'ignore' })
 

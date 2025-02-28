@@ -30,13 +30,24 @@ export function getPackageManager() {
  * @param {boolean} isDev Whether to install as a dev dependency
  * @returns {string} The install command
  */
-export function getInstallCommand(packageManager, isDev = false) {
+export function getInstallCommand(
+  packageManager,
+  isDev = false,
+  isFinal = false
+) {
   const commands = {
     npm: `npm install${isDev ? ' -D' : ''}`,
     pnpm: `pnpm add${isDev ? ' -D' : ''}`,
     yarn: `yarn add${isDev ? ' -D' : ''}`,
     bun: `bun add${isDev ? ' -D' : ''}`
   }
+
+  if (isFinal) {
+    if (packageManager === 'pnpm') {
+      return 'pnpm i --shamefully-hoist'
+    }
+  }
+
   return commands[packageManager]
 }
 

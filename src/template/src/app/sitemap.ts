@@ -3,10 +3,13 @@ import { headers } from 'next/headers'
 
 import { site } from '@/lib/seo'
 
+/**
+ * Generates a sitemap for the website
+ */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const headersList = await headers()
 
-  let domain = headersList.get('host') || site.domain
+  let domain = headersList.get('host') ?? site.domain
 
   if (process.env.NODE_ENV === 'development') {
     // for local development and preview URLs
@@ -15,8 +18,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     {
-      url: `https://${domain}`,
-      lastModified: new Date()
+      lastModified: new Date(),
+      url: `https://${domain}`
     }
   ]
 }

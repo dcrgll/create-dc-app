@@ -1,40 +1,40 @@
 import { Metadata, Viewport } from 'next'
 
 export const site = {
-  name: 'Site Name',
-  domain: 'example.com',
   description: 'Site Description',
+  domain: 'example.com',
+  name: 'Site Name',
   themeColor: '#000000',
   themeColorDark: '#000000'
 }
 
-export const meta: Metadata = {
+export const metadata: Metadata = {
+  description: site.description,
+  icons: {
+    icon: '/favicon.ico'
+  },
   metadataBase: new URL(
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:3000/'
       : `https://${site.domain}/`
   ),
-  title: site.name,
-  description: site.description,
   openGraph: {
-    title: site.name,
-    siteName: site.name,
-    url: `https://${site.domain}`,
+    description: site.description,
     locale: 'en',
+    siteName: site.name,
+    title: site.name,
     type: 'website',
-    description: site.description
-  },
-  icons: {
-    icon: '/favicon.ico'
+    url: `https://${site.domain}`
   },
   robots: {
-    index: true,
-    follow: true
-  }
+    follow: true,
+    index: true
+  },
+  title: site.name
 }
 
-export const view: Viewport = {
+export const viewport: Viewport = {
+  initialScale: 1,
   themeColor: site.themeColor,
-  width: 'device-width',
-  initialScale: 1
+  width: 'device-width'
 }

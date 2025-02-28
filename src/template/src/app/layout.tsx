@@ -1,11 +1,10 @@
-import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
-
-import { meta, view } from '@/lib/seo'
 
 import '@/styles/globals.css'
 
 import { ThemeProvider } from '@/components/theme-provider'
+
+export { metadata, viewport } from '@/lib/seo'
 
 const geistSans = Geist({
   subsets: ['latin'],
@@ -16,9 +15,6 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
   variable: '--font-geist-mono'
 })
-
-export const metadata = meta
-export const viewport = view
 
 export default function RootLayout({
   children
