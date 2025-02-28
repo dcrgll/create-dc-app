@@ -6,7 +6,10 @@ import fs from 'fs-extra'
 import { configurePackage } from '../utils/configure-package.js'
 import { createNextApp } from '../utils/create-next-app.js'
 import { installDependencies } from '../utils/dependencies.js'
-import { getPackageManager } from '../utils/get-package-manager.js'
+import {
+  getInstallCommand,
+  getPackageManager
+} from '../utils/get-package-manager.js'
 import { promptProjectName } from '../utils/prompts.js'
 import { copyTemplateFiles } from '../utils/template.js'
 
@@ -30,6 +33,11 @@ export async function createApp(projectName, options) {
     await copyTemplateFiles(projectPath)
 
     const packageManager = getPackageManager()
+
+    const installCommand = getInstallCommand(packageManager)
+
+    execSync(installCommand, { stdio: 'ignore' })
+
     console.log(`Successfully created your app with ${packageManager}`)
 
     console.log('\nNext steps:')

@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 import { headers } from 'next/headers'
 
-import { site } from '@/lib/site'
+import { site } from '@/lib/seo'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const headersList = await headers()
